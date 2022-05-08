@@ -1,0 +1,260 @@
+package com.DSA_Assingment_2_May_To_8_May;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public class Hw_02_May {
+	
+	public static void main (String[] args)
+    {
+        String a[] = {"India","Aus","India","Japan"};
+        
+        
+
+
+        String max = "";
+for(int i =0;i<a.length;i++)
+{
+
+if(a[i].length() > max.length())
+{
+max = a[i];
+}
+
+}
+
+
+String b[] = new String[max.length()+1];
+
+
+
+for(int i =0;i<a.length;i++)
+{
+int num = a[i].length();
+
+b[num] = b[num]+1;
+
+}
+
+
+
+for(int i = 0;i<b.length;i++)
+{
+int num = b[i].length();
+
+if(num > 0)
+{
+
+System.out.println("Index ="+i+" Frequency "+num);
+}
+}
+
+
+//****************************************************
+
+
+Integer arr[]={1,2,5,6,3,2};  
+  
+System.out.println("Second Smallest: "+getSecondSmallest(arr,6));  
+
+
+}
+    
+    public static int getSecondSmallest(Integer[] a, int total){  
+    	List<Integer> list=Arrays.asList(a);  
+    	Collections.sort(list);  
+    	int element=list.get(1);  
+    	return element;  
+    	}  
+
+}
+package com.DSA_Assingment_2_May_To_8_May;
+
+import java.util.Arrays;
+
+public class Hw_04_May {
+	
+	public static void main(String[] args) {
+		int[]a = {1,6,2,7,-9,-4,4,3,-5};
+		
+		findsquare(a);
+		
+		System.out.println(sumOfUnique(a));
+
+	}
+	
+	
+	public static void findsquare(int []a) {
+		for(int i=0;i<a.length;i++) {
+			a[i]=a[i]*a[i];
+		}
+		System.out.println(Arrays.toString(a));
+	}
+	
+	
+	 public static int sumOfUnique(int[] nums) {
+	        
+	       int[] counter = new int[101];
+	        for (int num : nums) {
+	            ++counter[num];
+	        }
+	        int ans = 0;
+	        for (int i = 0; i < 101; ++i) {
+	            if (counter[i] == 1) {
+	                ans = ans + i;
+	            }
+	        }
+	        return ans;
+	    }
+
+
+}
+package com.DSA_Assingment_2_May_To_8_May;
+
+public class Hw_06_May {
+
+public static void main(String[] args) {
+		
+		
+		String S = "abc";
+        int N = S.length();
+ 
+      
+        System.out.println(encryptString(S, N));
+        
+        
+        String str1="amazon";
+        String str2="azonam";
+        
+        
+        System.out.println(isRotated(str1,str2));
+		
+	}
+	
+	public static String convertToHex(int num)
+    {
+ 
+        StringBuilder temp = new StringBuilder();
+        while (num != 0) {
+            int rem = num % 16;
+            char c;
+            if (rem < 10) {
+                c = (char) (rem + 48);
+            }
+            else {
+                c = (char) (rem + 87);
+            }
+            temp.append(c);
+            num = num / 16;
+        }
+ 
+        return temp.toString();
+    }
+ 
+   
+    public static String encryptString(String S, int N)
+    {
+ 
+        StringBuilder ans = new StringBuilder();
+ 
+        for (int i = 0; i < N; i++) {
+ 
+            char ch = S.charAt(i);
+            int count = 0;
+            String hex;
+ 
+            while (i < N && S.charAt(i) == ch) {
+ 
+                count++;
+                i++;
+            }
+ 
+            i--;
+ 
+            
+            hex = convertToHex(count);
+ 
+            ans.append(ch);
+ 
+            
+            ans.append(hex);
+        }
+ 
+        ans.reverse();
+ 
+        return ans.toString();
+    }
+	
+    
+    public static boolean isRotated(String str1, String str2)
+    {
+        String temp=str1;
+        temp = temp.substring(str1.length()-2,str1.length()) + str1.substring(0,str1.length()-2);
+        str1 = str1.substring(2,str1.length()) + str1.substring(0,2);
+        
+        if(str1.equals(str2) || temp.equals(str2))
+           
+        	return true;
+        
+        return false;
+    }
+
+}
+package com.DSA_Assingment_2_May_To_8_May;
+
+public class Hw_07_May {
+	
+public static void main(String[] args) {
+		
+		int [] a = {3,4,5,6,7,2};
+		int n = a.length-1;
+		
+		System.out.println(peakElement(a,n));
+		
+		prodArray(a,n);
+		
+
+	}
+
+	
+	public static int peakElement(int arr[], int n){
+		for(int i=0;i<n;i++){
+	           if(n==1){
+	               return i;
+	           }
+	           else if(i==0){
+	               if(arr[i]>arr[i+1])
+	                return i;
+	           }
+	           else if(i==(n-1)){
+	               if(arr[i]>arr[i-1])
+	                return i;
+	           }
+	           else{
+	               if(arr[i]>arr[i-1] && arr[i]>arr[i+1])
+	                return i;
+	           }
+	       }
+		return n;
+		}
+	
+	
+	public static void prodArray(int a[], int n){
+        int p[] = new int[n];
+        int prod=1;
+        
+        for(int i=0; i<n; i++){
+            prod = prod * a[i];
+        }
+      
+        for(int i=0; i<n; i++){
+            p[i] = prod / a[i];
+        }
+        
+        for(int i=0; i<n; i++){
+            System.out.print(p[i] + " ");
+        }
+    }
+
+}
